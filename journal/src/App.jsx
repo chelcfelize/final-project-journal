@@ -1,40 +1,30 @@
-import { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import heroImg from './assets/hero.png'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
 import './App.css'
 
-function Intro() {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log('3 seconds passed!')
-    }, 3000)
-
-    return () => clearTimeout(timer)
-  }, [])
-
+function Intro(){
   return (
-    <div className="intro">
+    <div className='intro'>
       <h1>proof: we were here.</h1>
     </div>
   )
 }
 
-
 function Home(){
-
-    return(
-      <h1>well hello hello WAW MALI MALI AH</h1>
-    )
+ return(
+   <nav className='homelinks'>
+    <a href="/home">Home</a>
+      <a href="/add">Add</a>
+      <a href="/calendar">Calendar</a>
+  </nav>
+ )
 }
 
 function App() {
   return(
-    /*<BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Intro />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </BrowserRouter>*/
-    <Intro />
+    <Home />
   )
 }
 

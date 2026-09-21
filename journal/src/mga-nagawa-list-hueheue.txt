@@ -1,2 +1,0 @@
-make Intro function (opening page)
-import BrowserRouter, Routes, Route, useNavigate from react-router-dom
