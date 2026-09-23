@@ -1,12 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router";
 import './styles.css'
 
-
-
 function Intro(){
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/home')
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [navigate])
+
   return (
-    <div className='intro'>
+    <div className="intro">
       <h1>proof: we were here.</h1>
+      <div className="loading-spinner"></div>
     </div>
   )
 }
@@ -14,27 +24,32 @@ function Navbar(){
   const [showAddMenu, setShowAddMenu] = useState(false)
  return(
   <>
-   <div className='navbar'>
-    <nav className='homelinks'>
-    <a href="/home">Home</a>
+   <div className="navbar">
+      <nav className="homelinks">
 
-      <div className="add-menu">
-        <button onClick={() => setShowAddMenu(!showAddMenu)}>
-          Add
-        </button>
+        <Link to="/home">Home</Link>
 
-        {showAddMenu && (
-          <div className="popup-menu">
-            <a href="/addEntry">AddEntry</a>
-             <a href="/addPhoto">AddPhoto</a>
-          </div>
-        )}
-      </div>
+        <div className="add-menu">
+          <button onClick={() => setShowAddMenu(!showAddMenu)}>
+            Add
+          </button>
 
-      <a href="/calendar">Calendar</a>
-      <h2 className='to-the-right'>proof: we were here.</h2>
-  </nav>
-   </div>
+          {showAddMenu && (
+            <div className="popup-menu">
+              <Link to="/addEntry">AddEntry</Link>
+              <Link to="/addPhoto">AddPhoto</Link>
+            </div>
+          )}
+        </div>
+
+        <Link to="/calendar">Calendar</Link>
+
+        <h2 className="to-the-right">
+          proof: we were here.
+        </h2>
+
+      </nav>
+    </div>
    </>
  )
 }
@@ -126,7 +141,15 @@ function Calendar(){
 function App() {
   return(
     <>
-    <Calendar />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Intro />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/addEntry" element={<AddEntry />} />
+        <Route path="/addPhoto" element={<AddPhoto />} />
+        <Route path="/calendar" element={<Calendar />} />
+      </Routes>
+    </BrowserRouter>
     
     </>
   )
