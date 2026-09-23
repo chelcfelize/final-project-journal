@@ -11,11 +11,14 @@ looks exactly like what it is.
 
 At least six entries. One per real use. Every entry needs a commit link.
 
-### YYYY-MM-DD - short title
+### 2026-09-21 - start frontend
 
-- **Tool:**
+- **Tool:** 
+    chatgpt
 - **What I asked for:**
+    
 - **What it gave back:**
+
 - **What I kept, what I changed, and why:**
 - **Commit:** https://github.com/YOUR-USERNAME/YOUR-REPO/commit/SHA
 
