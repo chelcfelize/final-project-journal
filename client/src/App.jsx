@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router";
 import './styles.css'
+import addIcon from './components/add.svg'
+import calendarIcon from './components/calendar.svg'
+import homeIcon from './components/home.svg'
 
 function Intro(){
   const navigate = useNavigate()
@@ -8,7 +11,7 @@ function Intro(){
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/home')
-    }, 2000)
+    }, 3000)
 
     return () => clearTimeout(timer)
   }, [navigate])
@@ -27,22 +30,26 @@ function Navbar(){
    <div className="navbar">
       <nav className="homelinks">
 
-        <Link to="/home">Home</Link>
+        <Link to="/home" className='nav-icon'>
+        <img src={homeIcon} alt="Home" />
+        </Link>
 
         <div className="add-menu">
-          <button onClick={() => setShowAddMenu(!showAddMenu)}>
-            Add
+          <button onClick={() => setShowAddMenu(!showAddMenu)} className='nav-icon'>
+           <img src={addIcon} alt="Add" />
           </button>
 
           {showAddMenu && (
             <div className="popup-menu">
-              <Link to="/addEntry">AddEntry</Link>
-              <Link to="/addPhoto">AddPhoto</Link>
+              <Link to="/addEntry">Add an Entry</Link>
+              <Link to="/addPhoto">Add a Moment</Link>
             </div>
           )}
         </div>
 
-        <Link to="/calendar">Calendar</Link>
+        <Link to="/calendar" className='nav-icon'>
+        <img src={calendarIcon} alt="Calendar" />
+        </Link>
 
         <h2 className="to-the-right">
           proof: we were here.

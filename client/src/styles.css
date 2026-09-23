@@ -32,6 +32,53 @@ textarea {
   resize: vertical;
 }
 
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.nav-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.popup-menu{
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 140px;
+  padding: 8px;
+
+  background: white;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.add-menu {
+  position: relative;
+}
+
+.popup-menu a {
+  padding: 8px;
+  color: black;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.popup-menu a:hover {
+  background: #f0f0f0;
+}
+
 .loading-spinner {
   width: 30px;
   height: 30px;
