@@ -61,9 +61,49 @@ function Navbar(){
  )
 }
 function Home(){
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  })
+  const entries = [
+    {
+      id: 1,
+      title: "boom panes",
+      content: "boom panesboom panesboom panesboom panes",
+      date: "AAAAAAA"
+    },
+    {
+      id: 2,
+      title: "williw revillame",
+      content: "syempre ikaw lawng",
+      date: "AAAAAAA"
+    }
+  ]
  return (
    <>
    <Navbar />
+
+   <main className="home">
+    <p className="current-date">
+          {currentDate}
+        </p>
+        <div className="entry-grid">
+          {entries.map((entry) => (
+            <article className="entry-card" key={entry.id}>
+              <div className="entry-card-content">
+                <p className="entry-date">{entry.date}</p>
+
+                <h2>{entry.title}</h2>
+
+                <p className="entry-content">
+                  {entry.content}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </main>
    </>
  )
 }
