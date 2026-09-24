@@ -1,3 +1,4 @@
+import { supabase } from './supabase'
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router";
 import './styles.css'
@@ -109,25 +110,68 @@ function Home(){
 }
 
 function AddEntry(){
-  return (
-   <>
-   <Navbar />
+  const navigate = useNavigate()
 
-   <div className="entry-form">
-      <form>
-        <label>
-          <input type="text" name="entry-title" placeholder='add entry title'/>
-        </label>
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
 
-        <label>
-          <textarea name="journal-content" placeholder='write about a moment...'></textarea>
-        </label>
+  async function handleSubmit(event) {
+    event.preventDefault()
 
-        <button type="submit">publish proof</button>
-      </form>
-    </div>
-   </>
- )
+    const { error } = await supabase
+      .from('posts')
+      .insert({
+        type: 'entry',
+        title: title,
+        content: content,
+        image_url: null,
+        date: new Date().toISOString().split('T')[0]
+      })
+
+    if (error) {
+      console.log('SUPABASE ERROR:', error)
+      alert(error.message)
+      return
+    }
+
+    alert('Entry published!')
+    navigate('/home')
+  }
+
+  return(
+    <>
+      <Navbar />
+
+      <div className="entry-form">
+        <form onSubmit={handleSubmit}>
+
+          <label>
+            <input
+              type="text"
+              name="entry-title"
+              placeholder="add entry title"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+            />
+          </label>
+
+          <label>
+            <textarea
+              name="journal-content"
+              placeholder="write about a moment..."
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
+            ></textarea>
+          </label>
+
+          <button type="submit">
+            publish proof
+          </button>
+
+        </form>
+      </div>
+    </>
+  )
 }
 
 function AddPhoto(){
