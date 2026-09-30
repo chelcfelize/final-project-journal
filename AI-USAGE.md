@@ -27,11 +27,15 @@ At least six entries. One per real use. Every entry needs a commit link.
 Three cases. Be specific. If you write that the AI was never wrong, this section
 scores zero.
 
-### Case 1 - short title
+### Case 1 - Login Page Creation with Routing Edit
 
 - **What it gave me:**
+It gave me the initial, bare login page code that connects with Supabase as well as new routing for it to put in the App component
 - **What was wrong with it:**
+The routing it made disregarded my Intro component and headed straight to the home page.
 - **What I did instead:**
+I edited the routing it has written which excluded the Intro component that is supposed to be the page the user lands upon at first 
+opening the app. Added the intro component in the App() and edited the page it gets redirected to; from intro-to-home to intro-to-login
 - **Commit:** https://github.com/YOUR-USERNAME/YOUR-REPO/commit/SHA
 
 ## 3. Who wrote what
