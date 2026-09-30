@@ -27,6 +27,7 @@
   border: 1px solid #ddd;
   border-radius: 12px;
   overflow: hidden;
+  position: relative;
 }
 
 .entry-card-content {
@@ -367,7 +368,118 @@ textarea {
   border-radius: 50%;
   margin-top: 8px;
 }
+.writing-help {
+  margin: 24px 0;
+}
 
+.robot-help {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: #111;
+}
+.robot-icon img {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.help-bubble {
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: 14px;
+  background: white;
+}
+
+.help-options {
+  margin-top: 12px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+.help-options p {
+  margin-top: 0;
+}
+
+.help-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.help-buttons button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.help-buttons button:hover {
+  background: #f5f5f5;
+}
+
+.writing-suggestion {
+  margin-top: 16px;
+  padding: 14px;
+  border-left: 3px solid #111;
+  background: #f7f7f7;
+}
+
+.help-loading {
+  color: #777;
+  font-size: 14px;
+}
+
+.entry-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.entry-actions button {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  background: white;
+  color: #111;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.entry-actions button:hover {
+  background: #f5f5f5;
+}
+
+.edit-title {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.edit-content {
+  width: 100%;
+  min-height: 150px;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 16px;
+}
 
 /* Mobile */
 @media (max-width: 600px) {

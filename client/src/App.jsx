@@ -5,6 +5,7 @@ import './styles.css'
 import addIcon from './components/add.svg'
 import calendarIcon from './components/calendar.svg'
 import homeIcon from './components/home.svg'
+import robotIcon from './components/robot.svg'
 
 function Login() {
   const navigate = useNavigate()
@@ -135,16 +136,22 @@ function Navbar(){
    </>
  )
 }
-function Home(){
+function Home() {
   const [entries, setEntries] = useState([])
   const [loading, setLoading] = useState(true)
+
+  // Edit state
+  const [editingId, setEditingId] = useState(null)
+  const [editTitle, setEditTitle] = useState('')
+  const [editContent, setEditContent] = useState('')
 
   const currentDate = new Date().toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric'
   })
- useEffect(() => {
+
+  useEffect(() => {
     async function getEntries() {
       const { data, error } = await supabase
         .from('posts')
@@ -153,6 +160,7 @@ function Home(){
 
       if (error) {
         console.error('SUPABASE ERROR:', error)
+        setLoading(false)
         return
       }
 
@@ -163,59 +171,242 @@ function Home(){
     getEntries()
   }, [])
 
+  // Start editing
+  function startEditing(entry) {
+    setEditingId(entry.id)
+    setEditTitle(entry.title || '')
+    setEditContent(entry.content || '')
+  }
+
+  // Cancel editing
+  function cancelEditing() {
+    setEditingId(null)
+    setEditTitle('')
+    setEditContent('')
+  }
+
+  // Save edited entry
+  async function saveEdit(id) {
+    const { data, error } = await supabase
+      .from('posts')
+      .update({
+        title: editTitle,
+        content: editContent
+      })
+      .eq('id', id)
+      .select()
+      .single()
+
+    if (error) {
+      console.error('SUPABASE ERROR:', error)
+      alert(error.message)
+      return
+    }
+
+    setEntries(
+      entries.map((entry) =>
+        entry.id === id ? data : entry
+      )
+    )
+
+    cancelEditing()
+  }
+
+  // Delete entry
+  async function deleteEntry(id) {
+    const confirmDelete = window.confirm(
+      'Are you sure you want to delete this entry?'
+    )
+
+    if (!confirmDelete) {
+      return
+    }
+
+    const { error } = await supabase
+      .from('posts')
+      .delete()
+      .eq('id', id)
+
+    if (error) {
+      console.error('SUPABASE ERROR:', error)
+      alert(error.message)
+      return
+    }
+
+    setEntries(
+      entries.filter((entry) => entry.id !== id)
+    )
+  }
+
   return (
     <>
       <Navbar />
 
       <main className="home">
-        <p className="current-date">{currentDate}</p>
+
+        <p className="current-date">
+          {currentDate}
+        </p>
 
         {loading ? (
           <p>Loading...</p>
         ) : (
           <div className="entry-grid">
+
             {entries.map((entry) => (
-              <article className="entry-card" key={entry.id}>
+              <article
+                className="entry-card"
+                key={entry.id}
+              >
 
-                <div className="entry-card-content">
+                {editingId === entry.id ? (
 
-                  <p className="entry-date">
-                    {entry.date}
-                  </p>
+                  /* EDIT MODE */
+                  <div className="entry-card-content">
 
-                  <h2>
-                    {entry.title}
-                  </h2>
+                    <input
+                      type="text"
+                      value={editTitle}
+                      onChange={(event) =>
+                        setEditTitle(event.target.value)
+                      }
+                      className="edit-title"
+                    />
 
-                  <p className="entry-content">
-                    {entry.content}
-                  </p>
+                    <textarea
+                      value={editContent}
+                      onChange={(event) =>
+                        setEditContent(event.target.value)
+                      }
+                      className="edit-content"
+                    />
 
-                </div>
+                    <div className="entry-actions">
 
-                {entry.image_url && (
-                  <img
-                    src={entry.image_url}
-                    alt={entry.title}
-                    className="entry-image"
-                  />
+                      <button
+                        type="button"
+                        onClick={() => saveEdit(entry.id)}
+                      >
+                        save
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={cancelEditing}
+                      >
+                        cancel
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                ) : (
+
+                  /* NORMAL MODE */
+                  <>
+                    <div className="entry-card-content">
+
+                      <p className="entry-date">
+                        {entry.date}
+                      </p>
+
+                      <h2>
+                        {entry.title}
+                      </h2>
+
+                      <p className="entry-content">
+                        {entry.content}
+                      </p>
+
+                      <div className="entry-actions">
+
+                        <button
+                          type="button"
+                          onClick={() => startEditing(entry)}
+                        >
+                          edit
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => deleteEntry(entry.id)}
+                        >
+                          delete
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                    {entry.image_url && (
+                      <img
+                        src={entry.image_url}
+                        alt={entry.title}
+                        className="entry-image"
+                      />
+                    )}
+                  </>
                 )}
 
               </article>
-                ))}
-     
+            ))}
+
           </div>
         )}
+
       </main>
     </>
   )
 }
 
-function AddEntry(){
+function AddEntry() {
   const navigate = useNavigate()
 
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+
+  // Gemini writing help
+  const [showWritingHelp, setShowWritingHelp] = useState(false)
+  const [suggestion, setSuggestion] = useState('')
+  const [loadingHelp, setLoadingHelp] = useState(false)
+
+  async function getWritingHelp(type) {
+  console.log('BUTTON CLICKED:', type)
+
+  setLoadingHelp(true)
+  setSuggestion('')
+
+  try {
+    const response = await fetch(
+      'http://localhost:3001/api/writing-help',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          type: type
+        })
+      }
+    )
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Something went wrong.')
+    }
+
+    setSuggestion(data.suggestion)
+
+  } catch (error) {
+    console.error('Writing help error:', error)
+    setSuggestion(`Error: ${error.message}`)
+
+  } finally {
+    setLoadingHelp(false)
+  }
+}
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -240,13 +431,14 @@ function AddEntry(){
     navigate('/home')
   }
 
-  return(
+  return (
     <>
       <Navbar />
 
       <div className="entry-form">
         <form onSubmit={handleSubmit}>
 
+          {/* Entry title */}
           <label>
             <input
               type="text"
@@ -257,15 +449,92 @@ function AddEntry(){
             />
           </label>
 
+          
+
+          {/* Journal content */}
           <label>
             <textarea
               name="journal-content"
               placeholder="write about a moment..."
               value={content}
               onChange={(event) => setContent(event.target.value)}
-            ></textarea>
+            />
           </label>
 
+          {/* Gemini writing help */}
+          <div className="writing-help">
+
+            <button
+              type="button"
+              className="robot-help"
+              onClick={() => {
+                setShowWritingHelp(!showWritingHelp)
+                setSuggestion('')
+              }}
+            >
+              <span className="robot-icon">
+                <img src={robotIcon} alt="AI Help" />
+              </span>
+
+              <span className="help-bubble">
+                need help with writing your entry?
+              </span>
+            </button>
+
+            {/* Help options */}
+            {showWritingHelp && (
+              <div className="help-options">
+
+                <p>what kind of help do you need?</p>
+
+                <div className="help-buttons">
+
+                  <button
+                    type="button"
+                    disabled={loadingHelp}
+                    onClick={() => getWritingHelp('prompt')}
+                  >
+                    prompt
+                  </button>
+
+                  <button
+                    type="button"
+                    disabled={loadingHelp}
+                    onClick={() => getWritingHelp('exercise')}
+                  >
+                    writing exercise
+                  </button>
+
+                  <button
+                    type="button"
+                    disabled={loadingHelp}
+                    onClick={() => getWritingHelp('question')}
+                  >
+                    reflection question
+                  </button>
+
+                </div>
+
+                {/* Loading message */}
+                {loadingHelp && (
+                  <p className="help-loading">
+                    thinking of something to help...
+                  </p>
+                )}
+
+                {/* Gemini suggestion */}
+                {suggestion && !loadingHelp && (
+                  <div className="writing-suggestion">
+                    <p>{suggestion}</p>
+                  </div>
+                )}
+
+              </div>
+            )}
+
+          </div>
+
+          {/* Publish */}
           <button type="submit">
             publish proof
           </button>
