@@ -6,12 +6,86 @@ import addIcon from './components/add.svg'
 import calendarIcon from './components/calendar.svg'
 import homeIcon from './components/home.svg'
 
+function Login() {
+  const navigate = useNavigate()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  async function handleLogin(event) {
+    event.preventDefault()
+
+    setError('')
+    setLoading(true)
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    })
+
+    setLoading(false)
+
+    if (error) {
+      setError(error.message)
+      return
+    }
+
+    navigate('/home')
+  }
+
+  return (
+    <main className="login-page">
+
+      <div className="login-card">
+
+        <h1>proof: we were here.</h1>
+
+        <p>log in to your diary</p>
+
+        <form onSubmit={handleLogin}>
+
+          <input
+            type="email"
+            placeholder="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required
+          />
+
+          {error && (
+            <p className="login-error">
+              {error}
+            </p>
+          )}
+
+          <button type="submit" disabled={loading}>
+            {loading ? 'logging in...' : 'log in'}
+          </button>
+
+        </form>
+
+      </div>
+
+    </main>
+  )
+}
+
 function Intro(){
   const navigate = useNavigate()
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/home')
+      navigate('/login')
     }, 3000)
 
     return () => clearTimeout(timer)
@@ -517,6 +591,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Intro />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/addEntry" element={<AddEntry />} />
         <Route path="/addPhoto" element={<AddPhoto />} />
