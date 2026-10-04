@@ -163,4 +163,4 @@ Link to the AI-USAGE.md: https://github.com/chelcfelize/final-project-journal/bl
 
 ## Licence
 
-MIT, see [LICENSE](LICENSE). Put your own name in it.
+MIT, see [LICENSE](LICENSE).
