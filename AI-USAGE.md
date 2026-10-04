@@ -132,7 +132,8 @@ https://github.com/chelcfelize/final-project-journal/commit/646560565b6615e26371
 https://github.com/chelcfelize/final-project-journal/commit/76cea2e7c57fa95a6541f6c51bfe7f74fb14a17d
 
 https://github.com/chelcfelize/final-project-journal/commit/9087d2073093b21f65842bb6aa3b7079a067da60
-- **What it does and why it is built this way:** 
+- **What it does and why it is built this way:**
+  
 The Loading Landing Page (Intro) serves as the first page of the app and displays the app's title and a loading symbol before redirecting the user to the login page.
 
 The Navbar is present in all pages as it serves as the way for the user to go back and forth through pages, and the add button is made in the manner that 
