@@ -153,6 +153,9 @@ Your name, and a link. Course and section.
 
 ## AI use
 
+
+Link to the AI-USAGE.md: https://github.com/chelcfelize/final-project-journal/blob/main/AI-USAGE.md
+
 If you used AI while building this, say so here. Honest disclosure is the
 standard in this course and increasingly outside it, and reporting heavy use
 accurately costs you nothing.
