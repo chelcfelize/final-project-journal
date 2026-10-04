@@ -1,6 +1,6 @@
 import { supabase } from './supabase'
 import { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router";
+import { BrowserRouter, Routes, Route, Link, useNavigate, useSearchParams } from "react-router";
 import './styles.css'
 import addIcon from './components/add.svg'
 import calendarIcon from './components/calendar.svg'
@@ -137,6 +137,9 @@ function Navbar(){
  )
 }
 function Home() {
+  const [searchParams] = useSearchParams()
+  const selectedDate = searchParams.get('date')
+
   const [entries, setEntries] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -170,6 +173,10 @@ function Home() {
 
     getEntries()
   }, [])
+
+  const filteredEntries = selectedDate
+  ? entries.filter(entry => entry.date === selectedDate)
+  : entries
 
   // Start editing
   function startEditing(entry) {
@@ -253,7 +260,7 @@ function Home() {
         ) : (
           <div className="entry-grid">
 
-            {entries.map((entry) => (
+            {filteredEntries.map((entry) => (
               <article
                 className="entry-card"
                 key={entry.id}
@@ -411,6 +418,8 @@ function AddEntry() {
   async function handleSubmit(event) {
     event.preventDefault()
 
+    const { data: { user } } = await supabase.auth.getUser()
+
     const { error } = await supabase
       .from('posts')
       .insert({
@@ -418,7 +427,8 @@ function AddEntry() {
         title: title,
         content: content,
         image_url: null,
-        date: new Date().toISOString().split('T')[0]
+        date: new Date().toISOString().split('T')[0],
+        user_id: user.id
       })
 
     if (error) {
@@ -563,17 +573,23 @@ function AddPhoto(){
   }
 
   async function handleSubmit(event) {
-    event.preventDefault()
 
-    if (!imageFile) {
-      alert('Please select an image.')
-      return
-    }
+  event.preventDefault()
 
-    // Create a unique file name
+  if (!imageFile) {
+    alert('Please select an image.')
+    return
+  }
+
+  if (!imageFile.type.startsWith('image/')) {
+    alert('Please select an image file.')
+    return
+  }
+
+  try {
+
     const fileName = `${Date.now()}-${imageFile.name}`
 
-    // Upload image to Supabase Storage
     const { error: uploadError } = await supabase
       .storage
       .from('photos')
@@ -581,11 +597,10 @@ function AddPhoto(){
 
     if (uploadError) {
       console.error('UPLOAD ERROR:', uploadError)
-      alert(uploadError.message)
+      alert(`Upload failed: ${uploadError.message}`)
       return
     }
 
-    // Get the public URL of the image
     const { data: imageData } = supabase
       .storage
       .from('photos')
@@ -593,7 +608,8 @@ function AddPhoto(){
 
     const imageUrl = imageData.publicUrl
 
-    // Save the post information to the database
+    const { data: { user } } = await supabase.auth.getUser()
+
     const { error: databaseError } = await supabase
       .from('posts')
       .insert({
@@ -601,18 +617,26 @@ function AddPhoto(){
         title: title,
         content: caption,
         image_url: imageUrl,
-        date: new Date().toISOString().split('T')[0]
+        date: new Date().toISOString().split('T')[0],
+        user_id: user.id
       })
 
     if (databaseError) {
       console.error('DATABASE ERROR:', databaseError)
-      alert(databaseError.message)
+      alert(`Photo information could not be saved: ${databaseError.message}`)
       return
     }
 
     alert('Photo published!')
     navigate('/home')
+
+  } catch (error) {
+
+    console.error('UNEXPECTED ERROR:', error)
+    alert('Something went wrong while uploading the photo.')
+
   }
+}
 
   return(
     <>
@@ -833,7 +857,9 @@ function Calendar(){
                 key={index}
                 onClick={() => {
                   if (day !== null) {
-                    navigate('/home')
+                    const selectedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+
+                    navigate(`/home?date=${selectedDate}`)
                   }
                 }}
               >
