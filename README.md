@@ -1,4 +1,4 @@
-# Your Project Name
+# Proof: We Were Here
 
 > **Replace this whole file.** It is a worked example of the README your project
 > will be graded from, not a file to leave as it is. Start with
@@ -18,14 +18,13 @@ One sentence saying what this does and who it is for.
 
 ## What it does
 
-- Report a sighting with a place, a description and a spookiness rating
-- Browse everything reported, newest first
-- Delete a report
+- This app is a personal digital journal where the user can be able to view, create, edit, and delete posts in the form of a journal entry or a photo. It includes a Login feature to ensure that only authorized users can access the app; a Home page where the user can view past posts and have the ability to edit or delete them; the Add an Entry page where the user can share their journal entries, this page also includes an AI writing assistant to help with generating journal ideas; an Add a Photo page where the user can add a photo, it’s title and caption; and lastly the calendar page which lets the viewer see which days of the month have posts in them, be redirected to certain posts at a specified date, and be able to navigate between months and years.
 
 ## Built with
 
-React and Vite on the front end, Express and PostgreSQL on the back end. The
-client is on GitHub Pages, the API on (host), the database on (host).
+React and Vite on the front end, 
+Express.js and Gemini API
+Supabase
 
 ## Demo mode
 
@@ -149,28 +148,18 @@ Three honest bullets. This paragraph is worth more than it looks.
 
 ## Author
 
-Your name, and a link. Course and section.
+Chelsea Felize Egaran
+githublink
+CS-403
 
 ## AI use
 
+![Built with AI assistance](https://img.shields.io/badge/built%20with-AI%20assistance-0b5fff)
+
+- Assisted by ChatGPT
 
 Link to the AI-USAGE.md: https://github.com/chelcfelize/final-project-journal/blob/main/AI-USAGE.md
 
-If you used AI while building this, say so here. Honest disclosure is the
-standard in this course and increasingly outside it, and reporting heavy use
-accurately costs you nothing.
-
-This section is the last 10 points of the finals badge, and it wants three
-things:
-
-![Built with AI assistance](https://img.shields.io/badge/built%20with-AI%20assistance-0b5fff)
-
-- the badge above, or one you like better
-- a line naming which assistant you used and how much of the work it touched
-- a link to [AI-USAGE.md](AI-USAGE.md), where the full account lives
-
-Keep the detail in `AI-USAGE.md` rather than here. This section is the summary a
-visitor reads; that file is the record the badge is graded from.
 
 ## Licence
 
