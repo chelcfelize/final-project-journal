@@ -13,23 +13,23 @@ A screenshot of the main screen <img width="1919" height="991" alt="image" src="
 
 ## What it does/Features
 
-User Authentication — Log in to access the diary.
-Personal Journal Entries — Create and publish journal entries to document personal experiences.
-Photo Memories — Add photos with titles and captions to preserve meaningful moments.
-Home Feed — Browse previously published journal entries and photos in a scrolling feed.
-Edit and Delete Posts — Update or remove existing journal entries and photo posts.
-Calendar View — Navigate between months and years, identify dates with existing posts, and view memories associated with selected dates.
-AI Writing Assistant — Generate writing prompts, creative exercises, and reflective questions to help overcome writer's block. The assistant provides guidance rather than writing the journal entry for the user.
+**User Authentication** — Log in to access the diary.
+**Personal Journal Entries** — Create and publish journal entries to document personal experiences.
+**Photo Memories** — Add photos with titles and captions to preserve meaningful moments.
+**Home Feed** — Browse previously published journal entries and photos in a scrolling feed.
+**Edit and Delete Posts** — Update or remove existing journal entries and photo posts.
+**Calendar View** — Navigate between months and years, identify dates with existing posts, and view memories associated with selected dates.
+**AI Writing Assistant** — Generate writing prompts, creative exercises, and reflective questions to help overcome writer's block. The assistant provides guidance rather than writing the journal entry for the user.
 
 ## Built with
 
-React — Builds the user interface.
-Vite — Provides the frontend development and build tooling.
-CSS — Styles the application's interface.
-Express.js — Handles backend API requests.
-Google Gemini API — Generates writing prompts, exercises, and reflective questions.
-Supabase — Provides authentication and database services.
-Vercel — Hosts the frontend application.
+**React** — Builds the user interface.
+**Vite** — Provides the frontend development and build tooling.
+**CSS** — Styles the application's interface.
+**Express.js** — Handles backend API requests.
+**Google Gemini API** — Generates writing prompts, exercises, and reflective questions.
+**Supabase** — Provides authentication and database services.
+**Vercel** — Hosts the frontend application and backend API.
 
 ## Demo mode
 
@@ -144,8 +144,35 @@ once against the hosted database.
 
 ## Architecture
 
-Three or four sentences, or a small diagram. Which piece talks to which, and
-where each one is hosted.
+Proof: We Were Here uses a frontend, backend API, and Supabase services to provide its functionality.
+
+1. Frontend: The React application, built with Vite and deployed on Vercel, provides the login page, home feed, journal entry form, photo form, and calendar.
+   
+2. Authentication and database: Supabase handles user authentication and stores journal posts. Database access policies help restrict users to their authorized data.
+   
+3. Backend API: The Express.js server, deployed on Vercel, receives writing-assistant requests from the frontend and communicates with the Google Gemini API.
+   
+4. AI writing assistance: Gemini generates short writing prompts, exercises, and reflective questions, which are returned to the frontend for display.
+
+ **Architecture Diagram**
+                USER
+                  |
+                  v
+       React + Vite Frontend
+             (Vercel)
+             /       \
+            v         v
+       Supabase     Express API
+       Auth/DB      (Render)
+                       |
+                       v
+                  Gemini API
+                       |
+                       v
+              Writing Suggestions
+                       |
+                       v
+                React Frontend
 
 ## What I would do next
 
