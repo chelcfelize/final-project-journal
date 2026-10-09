@@ -6,7 +6,7 @@
 
 One sentence saying what this does and who it is for.
 
-**Live site:** https://yourusername.github.io/your-repo-name/
+**Live site:** https://proofwewerehere.vercel.app/
 **API:** https://your-api.onrender.com/healthz
 **Demo video:** (link)
 
