@@ -49,13 +49,9 @@ A screenshot of the main screen <img width="1919" height="991" alt="image" src="
 Before running the project, make sure you have:
 
 Node.js
-
 npm
-
 A Supabase project
-
 A Google Gemini API key
-
 
 1. Clone the Repository
    
