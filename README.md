@@ -150,7 +150,7 @@ Three honest bullets. This paragraph is worth more than it looks.
 
 Chelsea Felize Egaran
 
-[githublink](https://github.com/chelcfelize)
+[Contact Me](https://github.com/chelcfelize)
 
 CS-403
 
