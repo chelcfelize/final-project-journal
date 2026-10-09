@@ -49,49 +49,52 @@ A screenshot of the main screen <img width="1919" height="991" alt="image" src="
 Before running the project, make sure you have:
 
 Node.js
+
 npm
+
 A Supabase project
+
 A Google Gemini API key
 
 1. Clone the Repository
    
-git clone https://github.com/chelcfelize/proof-we-were-here.git
-
-cd proof-we-were-here
+   git clone https://github.com/chelcfelize/proof-we-were-here.git
+   
+   cd proof-we-were-here
 
 2. Set Up the Frontend
    
 
-Navigate to the client directory and install the dependencies:
-
-
-cd client
-
-npm install
-
-
-Configure the frontend environment variables using the names expected by your Supabase client and API configuration. Use your local environment file and keep actual credentials out of Git.
-
-Start the development server:
-
-npm run dev
-
-Open the local URL displayed in your terminal.
+   Navigate to the client directory and install the dependencies:
+   
+   
+   cd client
+   
+   npm install
+   
+   
+   Configure the frontend environment variables using the names expected by your Supabase client and API configuration. Use your local environment file and keep actual credentials out of Git.
+   
+   Start the development server:
+   
+   npm run dev
+   
+   Open the local URL displayed in your terminal.
 
 3. Set Up the Backend
 
-Open a separate terminal and navigate to the server directory:
-
-cd server
-npm install
-
-Create a local .env file and configure the required backend environment variables, including GEMINI_API_KEY and the allowed frontend origin.
-
-Start the backend using the development or start command defined in server/package.json.
-
-The backend should be available at the local address configured by your server.
-
-Note: Your frontend API URL must point to your local backend during local development. For the deployed application, it should point to the deployed Render API.
+   Open a separate terminal and navigate to the server directory:
+   
+   cd server
+   npm install
+   
+   Create a local .env file and configure the required backend environment variables, including GEMINI_API_KEY and the allowed frontend origin.
+   
+   Start the backend using the development or start command defined in server/package.json.
+   
+   The backend should be available at the local address configured by your server.
+   
+   Note: Your frontend API URL must point to your local backend during local development. For the deployed application, it should point to the deployed Render API.
 
 ## Environment variables
 
