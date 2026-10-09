@@ -4,7 +4,9 @@ Start with > [START-HERE.md](START-HERE.md).
 One sentence saying what this does and who it is for.
 
 **Live site:** https://proofwewerehere.vercel.app/
+
 **API:** https://proofwewerehereapi.onrender.com/healthz
+
 **Demo video:** https://drive.google.com/file/d/1dxwLVZJvxvxJ891rc8h5s3A0vpjSVChE/view?usp=sharing
 
 ![A screenshot of the main screen](docs/assets/screenshot.png)
