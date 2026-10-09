@@ -156,23 +156,41 @@ Proof: We Were Here uses a frontend, backend API, and Supabase services to provi
 
  **Architecture Diagram**
                 USER
+                
                   |
+                  
                   v
+                  
        React + Vite Frontend
+       
              (Vercel)
+             
              /       \
+             
             v         v
+            
        Supabase     Express API
+       
        Auth/DB      (Render)
+       
                        |
+                       
                        v
+                       
                   Gemini API
+                  
                        |
+                       
                        v
+                       
               Writing Suggestions
+              
                        |
+                       
                        v
+                       
                 React Frontend
+                
 
 ## What I would do next
 
