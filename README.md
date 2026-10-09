@@ -1,6 +1,6 @@
 # Proof: We Were Here
 
-**Proof: We Were Here** is a personal digital diary that allows users to document their memories through journal entries and photos. It provides a private space for recording everyday experiences, revisiting past moments, and reflecting on memories over time.
+**Proof: We Were Here** is a personal digital diary that allows users to document their memories through journal entries and photos. It provides a private space for recording everyday experiences, revisiting past moments, and reflecting on memories over time. 
 
 **Live site:** https://proofwewerehere.vercel.app/
 
@@ -11,15 +11,25 @@
 A screenshot of the main screen <img width="1919" height="991" alt="image" src="https://github.com/user-attachments/assets/d358a1a6-eed9-445e-9596-fcbd67822574" />
 
 
-## What it does
+## What it does/Features
 
-- This app is a personal digital journal where the user can be able to view, create, edit, and delete posts in the form of a journal entry or a photo. It includes a Login feature to ensure that only authorized users can access the app; a Home page where the user can view past posts and have the ability to edit or delete them; the Add an Entry page where the user can share their journal entries, this page also includes an AI writing assistant to help with generating journal ideas; an Add a Photo page where the user can add a photo, it’s title and caption; and lastly the calendar page which lets the viewer see which days of the month have posts in them, be redirected to certain posts at a specified date, and be able to navigate between months and years.
+User Authentication — Log in to access the diary.
+Personal Journal Entries — Create and publish journal entries to document personal experiences.
+Photo Memories — Add photos with titles and captions to preserve meaningful moments.
+Home Feed — Browse previously published journal entries and photos in a scrolling feed.
+Edit and Delete Posts — Update or remove existing journal entries and photo posts.
+Calendar View — Navigate between months and years, identify dates with existing posts, and view memories associated with selected dates.
+AI Writing Assistant — Generate writing prompts, creative exercises, and reflective questions to help overcome writer's block. The assistant provides guidance rather than writing the journal entry for the user.
 
 ## Built with
 
-React and Vite on the front end, 
-Express.js and Gemini API
-Supabase
+React — Builds the user interface.
+Vite — Provides the frontend development and build tooling.
+CSS — Styles the application's interface.
+Express.js — Handles backend API requests.
+Google Gemini API — Generates writing prompts, exercises, and reflective questions.
+Supabase — Provides authentication and database services.
+Vercel — Hosts the frontend application.
 
 ## Demo mode
 
@@ -145,7 +155,7 @@ Three honest bullets. This paragraph is worth more than it looks.
 
 Chelsea Felize Egaran
 
-[Contact Me](https://github.com/chelcfelize)
+[Github Profile](https://github.com/chelcfelize)
 
 CS-403
 
