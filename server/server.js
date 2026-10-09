@@ -93,6 +93,15 @@ Keep it short.
   }
 })
 
-app.listen(3001, () => {
-  console.log('Gemini server running on port 3001')
-})
+app.get("/healthz", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    message: "API is running"
+  });
+});
+
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Gemini server running on port ${PORT}`);
+});
