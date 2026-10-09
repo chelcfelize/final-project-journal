@@ -11,9 +11,10 @@
 }
 
 .home {
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 32px 0;
+  padding: 32px 16px;
 }
 
 .entry-grid {
@@ -482,6 +483,7 @@ textarea {
 }
 
 /* Mobile */
+/* Mobile */
 @media (max-width: 600px) {
   .entry-form,
   .photo-form {
@@ -577,4 +579,210 @@ textarea {
   margin: -4px 0 0;
   font-size: 14px;
   color: #c00;
+}
+
+
+/* Mobile responsive styles */
+@media (max-width: 600px) {
+
+  /* Navigation */
+  .navbar {
+    padding: 12px;
+  }
+
+  .homelinks {
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .nav-icon {
+    padding: 6px;
+    flex-shrink: 0;
+  }
+
+  .nav-icon img {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Home page */
+  .home {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 24px 12px;
+  }
+
+  .current-date {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .entry-grid {
+    gap: 16px;
+  }
+
+  /* Diary cards */
+  .entry-card {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .entry-card-content {
+    padding: 16px;
+  }
+
+  .entry-card h2 {
+    font-size: 20px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  .entry-date {
+    font-size: 12px;
+  }
+
+  .entry-content {
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+  }
+
+  .entry-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+  }
+
+  /* Edit and delete buttons */
+  .entry-actions {
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin: 0 12px 12px;
+  }
+
+  .entry-actions button {
+    font-size: 13px;
+    padding: 7px 10px;
+  }
+
+  /* Add entry and photo forms */
+  .entry-form,
+  .photo-form {
+    padding: 32px 16px;
+  }
+
+  .entry-form form,
+  .photo-form form {
+    width: 100%;
+    max-width: 100%;
+    gap: 14px;
+  }
+
+  .entry-form input,
+  .photo-form input[type="text"],
+  .entry-form textarea,
+  .photo-form textarea {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .entry-form textarea {
+    min-height: 220px;
+  }
+
+  /* Writing helper */
+  .help-options {
+    padding: 12px;
+  }
+
+  .help-buttons {
+    gap: 8px;
+  }
+
+  .help-buttons button {
+    font-size: 13px;
+  }
+
+  /* Calendar */
+  .calendar-page {
+    margin: 20px auto;
+    padding: 0 8px;
+  }
+
+  .calendar-header {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .month-year-button {
+    font-size: 22px;
+    white-space: normal;
+  }
+
+  .calendar-header button {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+
+  .calendar-day-name {
+    padding: 8px 0;
+    font-size: 11px;
+  }
+
+  .calendar-day {
+    min-height: 60px;
+    padding: 6px 2px;
+    font-size: 12px;
+  }
+
+  .post-marker {
+    width: 5px;
+    height: 5px;
+    margin: 5px auto 0;
+  }
+
+  .date-picker {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .date-picker select {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  /* Login page */
+  .login-page {
+    padding: 16px;
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 24px 20px;
+  }
+
+  .login-card h1 {
+    font-size: 27px;
+  }
+
+  /* Intro */
+  .intro {
+    margin: 16px;
+    padding: 16px;
+  }
+
+  /* Popup menu */
+  .popup-menu {
+    width: 140px;
+    max-width: calc(100vw - 24px);
+    z-index: 10;
+  }
 }
