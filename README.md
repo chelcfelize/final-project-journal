@@ -113,13 +113,13 @@ A Google Gemini API key
 
 The React frontend is deployed on Vercel.
 
-1.Connect the GitHub repository to Vercel.
-
-2.Set the Root Directory to client.
-
-3.Configure the required frontend environment variables in Vercel's project settings, including your Supabase credentials and backend API URL.
-
-4.Deploy the project. Vercel will build and host the frontend.
+   1.Connect the GitHub repository to Vercel.
+   
+   2.Set the Root Directory to client.
+   
+   3.Configure the required frontend environment variables in Vercel's project settings, including your Supabase credentials and backend API URL.
+   
+   4.Deploy the project. Vercel will build and host the frontend.
 
 **Backend**
 
