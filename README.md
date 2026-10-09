@@ -1,6 +1,6 @@
 # Proof: We Were Here
 
-*Proof: We Were Here* is a personal digital diary that allows users to document their memories through journal entries and photos. It provides a private space for recording everyday experiences, revisiting past moments, and reflecting on memories over time.
+**Proof: We Were Here** is a personal digital diary that allows users to document their memories through journal entries and photos. It provides a private space for recording everyday experiences, revisiting past moments, and reflecting on memories over time.
 
 **Live site:** https://proofwewerehere.vercel.app/
 
