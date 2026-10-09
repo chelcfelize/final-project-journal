@@ -31,116 +31,96 @@ A screenshot of the main screen <img width="1919" height="991" alt="image" src="
 **Supabase** — Provides authentication and database services.
 **Vercel** — Hosts the frontend application and backend API.
 
-## Demo mode
-
-This repository can run two ways, chosen by one environment variable at **build**
-time.
-
-**Demo mode is the default.** Only the exact string `false` turns it off, so a
-forgotten or mistyped variable leaves you on the simulated backend with a visible
-notice rather than on a silently broken build.
-
-| `VITE_USE_MOCK_API` | What happens |
-| --- | --- |
-| unset, or `true` | The client answers its own requests from `localStorage`. No server, no database, nothing shared between visitors. This is what the template ships with, so the GitHub Pages link works on day one. |
-| `false` | The client calls the Express API at `VITE_API_BASE_URL`, which reads and writes real PostgreSQL. |
-
-**Demo mode is a starting point and a fallback, not a finished project.** Your
-finals submission is all three pieces deployed and talking to each other. Demo
-mode is there so you can build the interface in week one before the API exists,
-and so you have something to show if a free tier is asleep during your demo.
-
-GitHub Pages serves files and cannot run Node, so the API and the database can
-never live there. They go somewhere else:
-
-| Piece | Options |
-| --- | --- |
-| **API** | Render, Railway, Fly.io, Koyeb, a VPS, or [self-hosted behind a tunnel](../content/extending-your-app/11-self-hosting.md) |
-| **Database** | Neon, Supabase, Railway, Aiven, or your own PostgreSQL |
-
-`content/extending-your-app/` in your course workspace walks through all of it.
-Page 10 is the decision page if you do not know which to pick.
 
 ## Running it yourself
 
-**The client only, in demo mode.** No database needed.
+Before running the project, make sure you have:
 
-    cd client
-    npm install
-    cp .env.example .env        # VITE_USE_MOCK_API stays true
-    npm run dev                 # http://localhost:5173
+Node.js
+npm
+A Supabase project
+A Google Gemini API key
 
-**The whole stack.** Needs a PostgreSQL, either local or hosted.
+1. Clone the Repository
+git clone https://github.com/chelcfelize/proof-we-were-here.git
+cd proof-we-were-here
 
-    # 1. the database
-    docker run --name my-pg -e POSTGRES_PASSWORD=devpassword \
-      -e POSTGRES_DB=haunted -p 5432:5432 -d postgres:17
+2. Set Up the Frontend
 
-    # 2. the API
-    cd server
-    npm install
-    cp .env.example .env        # check DATABASE_URL
-    npm run db:reset            # creates the tables and adds sample rows
-    npm run dev                 # http://localhost:3000
+Navigate to the client directory and install the dependencies:
 
-    # 3. the client, in another terminal
-    cd client
-    npm install
-    cp .env.example .env
-    # set VITE_USE_MOCK_API=false
-    npm run dev
+cd client
+npm install
 
-Check the API on its own before you blame the client:
+Configure the frontend environment variables using the names expected by your Supabase client and API configuration. Use your local environment file and keep actual credentials out of Git.
 
-    curl http://localhost:3000/healthz     # is the process alive
-    curl http://localhost:3000/readyz      # is the database reachable
-    curl http://localhost:3000/api/sightings
+Start the development server:
+
+npm run dev
+
+Open the local URL displayed in your terminal.
+
+3. Set Up the Backend
+
+Open a separate terminal and navigate to the server directory:
+
+cd server
+npm install
+
+Create a local .env file and configure the required backend environment variables, including GEMINI_API_KEY and the allowed frontend origin.
+
+Start the backend using the development or start command defined in server/package.json.
+
+The backend should be available at the local address configured by your server.
+
+Note: Your frontend API URL must point to your local backend during local development. For the deployed application, it should point to the deployed Render API.
 
 ## Environment variables
 
-None of these are committed. `.env.example` in each folder lists them with
-placeholder values.
-
 | Name | Where | What it is |
 | --- | --- | --- |
-| `DATABASE_URL` | server | PostgreSQL connection string. Contains a password |
-| `CORS_ORIGINS` | server | comma-separated origins allowed to call the API |
-| `NODE_ENV` | server | `production` on your host |
-| `PORT` | server | **set by the host**, do not set it yourself |
-| `VITE_USE_MOCK_API` | client, at build time | only `false` turns demo mode off; unset means on |
-| `VITE_API_BASE_URL` | client, at build time | your API's public URL, no trailing slash |
-
-Every `VITE_` value is compiled into the built JavaScript and is **public**.
-Never put a key, a password or a connection string in one.
+| `GEMINI_API_KEY` | backend | Authenticates requests to the Google Gemini API. |
+| `FRONTEND_URL` | backend | Specifies the allowed frontend origin for CORS. |
+| `PORT` | backend | `Specifies the port used by the server; the hosting platform may provide this automatically. |
+| `Supabase project URL` | front end | Identifies the Supabase project. |
+| `Supabase publishable/anon key` | front end | Allows the frontend to connect to Supabase under the project's configured access policies. |
+| `Frontend API URL` | front end | Identifies the backend API used by the application. |
 
 ## Deploying
 
-**Client, to GitHub Pages.** Already wired up in
-`.github/workflows/deploy-pages.yml`. Two one-time steps:
+**Frontend**
 
-1. **Settings > Pages > Build and deployment > Source: GitHub Actions.** Without
-   this the workflow goes green and publishes nothing.
-2. Nothing else, until your API is live. Demo mode is the default, so the first
-   deploy works on its own. When the API is up, add `VITE_USE_MOCK_API` = `false`
-   and `VITE_API_BASE_URL` under **Settings > Secrets and variables > Actions >
-   Variables**, then re-run the workflow.
+The React frontend is deployed on Vercel.
 
-The repository must be **public** for Pages to serve it on a free account.
+1.Connect the GitHub repository to Vercel.
+2.Set the Root Directory to client.
+3.Configure the required frontend environment variables in Vercel's project settings, including your Supabase credentials and backend API URL.
+4.Deploy the project. Vercel will build and host the frontend.
 
-**API and database.** Not automated here, because most hosts deploy straight from
-your repository with no workflow at all. Point your host at the `server/` folder,
-set the environment variables in its dashboard, and run `server/db/schema.sql`
-once against the hosted database.
+**Backend**
+
+Deploy the Express.js backend using your configured hosting platform.
+
+1. Configure the backend's root directory as server, if required by your hosting platform.
+2. Add the required environment variables in the hosting platform's dashboard, including GEMINI_API_KEY and the allowed frontend origin.
+3. Deploy the backend and verify that the API is running.
+4. Ensure the frontend API URL points to the deployed backend.
+
+**Database and Authentication**
+
+Supabase manages the application's database and authentication. Configure the required database tables, authentication settings, and Row Level Security (RLS) policies in your Supabase project.
+
+**Environment Variables**
+
+Keep environment variables and secret keys out of the repository. Configure them locally for development and in the appropriate hosting dashboards for deployment.
 
 ## Project structure
 
-    client/          React front end, built by Vite
-      src/api/       ONE interface, two implementations, chosen by a variable
-      src/components/
-    server/          Express API
-      db/            pool, schema.sql, seed.sql, and a runner for them
-    compose.yml      only if you self-host
-    docs/            your planning documents and weekly reports
+  proof-we-were-here/ 
+  client/       React frontend built with Vite 
+  src/          Application source code and components 
+  server/       Express.js backend and Gemini API integration 
+  README.md     Project documentation
 
 ## Architecture
 
@@ -155,6 +135,8 @@ Proof: We Were Here uses a frontend, backend API, and Supabase services to provi
 4. AI writing assistance: Gemini generates short writing prompts, exercises, and reflective questions, which are returned to the frontend for display.
 
  **Architecture Diagram**
+
+ 
                 USER
                 
                   |
@@ -194,7 +176,10 @@ Proof: We Were Here uses a frontend, backend API, and Supabase services to provi
 
 ## What I would do next
 
-Three honest bullets. This paragraph is worth more than it looks.
+**Improve Calendar Organization**: Add more options for grouping and organizing journal entries and photo memories in the calendar.
+**Support Multiple Users**: Implement user registration so multiple users can create accounts and maintain their own private personal diaries.
+**Add an In-App Camera**: Allow users to take photos directly within the application and save them as diary memories.
+**Enhance AI Writing Assistance**: Expand and refine the AI writing help feature by offering more writing prompts, personalized suggestions, and additional tools to help users reflect on and express their thoughts.
 
 ## Author
 
