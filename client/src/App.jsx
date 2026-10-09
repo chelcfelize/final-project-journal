@@ -386,7 +386,7 @@ function AddEntry() {
 
   try {
     const response = await fetch(
-      'http://localhost:3001/api/writing-help',
+      'https://proofwewerehereapi.onrender.com/api/writing-help',
       {
         method: 'POST',
         headers: {
