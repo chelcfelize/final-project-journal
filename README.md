@@ -149,7 +149,9 @@ Three honest bullets. This paragraph is worth more than it looks.
 ## Author
 
 Chelsea Felize Egaran
-githublink
+
+[githublink](https://github.com/chelcfelize)
+
 CS-403
 
 ## AI use
