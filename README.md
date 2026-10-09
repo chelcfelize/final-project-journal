@@ -6,7 +6,8 @@
 
 **Demo video:** https://drive.google.com/file/d/1dxwLVZJvxvxJ891rc8h5s3A0vpjSVChE/view?usp=sharing
 
-![A screenshot of the main screen](docs/assets/screenshot.png)
+![A screenshot of the main screen]<img width="1919" height="991" alt="image" src="https://github.com/user-attachments/assets/d358a1a6-eed9-445e-9596-fcbd67822574" />
+
 
 ## What it does
 
