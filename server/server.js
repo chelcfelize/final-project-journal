@@ -87,12 +87,12 @@ Keep it short.
     })
 
   } catch (error) {
-    console.error('Gemini error:', error)
+  console.error('Gemini error:', error)
 
-    res.status(500).json({
-      error: error.message || 'Could not generate writing help.'
-    })
-  }
+  res.status(500).json({
+    error: 'Could not generate writing help. Please try again.'
+  })
+}
 })
 
 app.get("/healthz", (req, res) => {
