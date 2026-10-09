@@ -1,18 +1,11 @@
 # Proof: We Were Here
-
-> **Replace this whole file.** It is a worked example of the README your project
-> will be graded from, not a file to leave as it is. Start with
-> [START-HERE.md](START-HERE.md).
+Start with > [START-HERE.md](START-HERE.md).
 
 One sentence saying what this does and who it is for.
 
 **Live site:** https://proofwewerehere.vercel.app/
-**API:** https://your-api.onrender.com/healthz
-**Demo video:** (link)
-
-> **This deployment is running in demo mode.** The interface is real; the backend
-> is simulated in your browser so the site works without a server. See
-> [Demo mode](#demo-mode) below. Delete this quote once your API is live.
+**API:** https://proofwewerehereapi.onrender.com/healthz
+**Demo video:** https://drive.google.com/file/d/1dxwLVZJvxvxJ891rc8h5s3A0vpjSVChE/view?usp=sharing
 
 ![A screenshot of the main screen](docs/assets/screenshot.png)
 
