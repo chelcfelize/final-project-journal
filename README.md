@@ -144,9 +144,13 @@ Keep environment variables and secret keys out of the repository. Configure them
 ## Project structure
 
   proof-we-were-here/ 
+  
   client/       React frontend built with Vite 
+  
   src/          Application source code and components 
+  
   server/       Express.js backend and Gemini API integration 
+  
   README.md     Project documentation
 
 ## Architecture
