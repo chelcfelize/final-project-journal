@@ -1,5 +1,4 @@
 # Proof: We Were Here
-Start with > [START-HERE.md](START-HERE.md).
 
 **Live site:** https://proofwewerehere.vercel.app/
 
