@@ -1,8 +1,6 @@
 # Proof: We Were Here
 Start with > [START-HERE.md](START-HERE.md).
 
-One sentence saying what this does and who it is for.
-
 **Live site:** https://proofwewerehere.vercel.app/
 
 **API:** https://proofwewerehereapi.onrender.com/healthz
