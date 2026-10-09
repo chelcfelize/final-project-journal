@@ -14,21 +14,33 @@ A screenshot of the main screen <img width="1919" height="991" alt="image" src="
 ## What it does/Features
 
 **User Authentication** — Log in to access the diary.
+
 **Personal Journal Entries** — Create and publish journal entries to document personal experiences.
+
 **Photo Memories** — Add photos with titles and captions to preserve meaningful moments.
+
 **Home Feed** — Browse previously published journal entries and photos in a scrolling feed.
+
 **Edit and Delete Posts** — Update or remove existing journal entries and photo posts.
+
 **Calendar View** — Navigate between months and years, identify dates with existing posts, and view memories associated with selected dates.
+
 **AI Writing Assistant** — Generate writing prompts, creative exercises, and reflective questions to help overcome writer's block. The assistant provides guidance rather than writing the journal entry for the user.
 
 ## Built with
 
 **React** — Builds the user interface.
+
 **Vite** — Provides the frontend development and build tooling.
+
 **CSS** — Styles the application's interface.
+
 **Express.js** — Handles backend API requests.
+
 **Google Gemini API** — Generates writing prompts, exercises, and reflective questions.
+
 **Supabase** — Provides authentication and database services.
+
 **Vercel** — Hosts the frontend application and backend API.
 
 
@@ -37,20 +49,30 @@ A screenshot of the main screen <img width="1919" height="991" alt="image" src="
 Before running the project, make sure you have:
 
 Node.js
+
 npm
+
 A Supabase project
+
 A Google Gemini API key
 
+
 1. Clone the Repository
+   
 git clone https://github.com/chelcfelize/proof-we-were-here.git
+
 cd proof-we-were-here
 
 2. Set Up the Frontend
+   
 
 Navigate to the client directory and install the dependencies:
 
+
 cd client
+
 npm install
+
 
 Configure the frontend environment variables using the names expected by your Supabase client and API configuration. Use your local environment file and keep actual credentials out of Git.
 
@@ -93,8 +115,11 @@ Note: Your frontend API URL must point to your local backend during local develo
 The React frontend is deployed on Vercel.
 
 1.Connect the GitHub repository to Vercel.
+
 2.Set the Root Directory to client.
+
 3.Configure the required frontend environment variables in Vercel's project settings, including your Supabase credentials and backend API URL.
+
 4.Deploy the project. Vercel will build and host the frontend.
 
 **Backend**
@@ -102,8 +127,11 @@ The React frontend is deployed on Vercel.
 Deploy the Express.js backend using your configured hosting platform.
 
 1. Configure the backend's root directory as server, if required by your hosting platform.
+
 2. Add the required environment variables in the hosting platform's dashboard, including GEMINI_API_KEY and the allowed frontend origin.
+
 3. Deploy the backend and verify that the API is running.
+
 4. Ensure the frontend API URL points to the deployed backend.
 
 **Database and Authentication**
@@ -177,8 +205,11 @@ Proof: We Were Here uses a frontend, backend API, and Supabase services to provi
 ## What I would do next
 
 **Improve Calendar Organization**: Add more options for grouping and organizing journal entries and photo memories in the calendar.
+
 **Support Multiple Users**: Implement user registration so multiple users can create accounts and maintain their own private personal diaries.
+
 **Add an In-App Camera**: Allow users to take photos directly within the application and save them as diary memories.
+
 **Enhance AI Writing Assistance**: Expand and refine the AI writing help feature by offering more writing prompts, personalized suggestions, and additional tools to help users reflect on and express their thoughts.
 
 ## Author
